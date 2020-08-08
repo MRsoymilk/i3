@@ -1,0 +1,315 @@
+#  _ _____                    __ _       
+# (_)___ /    ___ ___  _ __  / _(_) __ _ 
+# | | |_ \   / __/ _ \| '_ \| |_| |/ _` |
+# | |___) | | (_| (_) | | | |  _| | (_| |
+# |_|____/   \___\___/|_| |_|_| |_|\__, |
+#                                  |___/ 
+# i3 config file (v4)
+
+# font
+font pango: Hack 15
+
+#     _         _          ____  _             _   
+#    / \  _   _| |_ ___   / ___|| |_ __ _ _ __| |_ 
+#   / _ \| | | | __/ _ \  \___ \| __/ _` | '__| __|
+#  / ___ \ |_| | || (_) |  ___) | || (_| | |  | |_ 
+# /_/   \_\__,_|\__\___/  |____/ \__\__,_|_|   \__|
+exec --no-startup-id sh ~/.config/i3/autostart
+
+#  _  __            ____  _           _ 
+# | |/ /___ _   _  | __ )(_)_ __   __| |
+# | ' // _ \ | | | |  _ \| | '_ \ / _` |
+# | . \  __/ |_| | | |_) | | | | | (_| |
+# |_|\_\___|\__, | |____/|_|_| |_|\__,_|
+#           |___/                       
+
+# set meta key asomod key
+set $mod Mod4
+
+floating_modifier   $mod
+focus_follows_mouse	yes
+
+# Scratchpad
+bindsym $mod+Shift+w	move scratchpad
+bindsym $mod+w		    scratchpad show
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+Left   focus left
+bindsym $mod+Down   focus down
+bindsym $mod+Up     focus up
+bindsym $mod+Right  focus right
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+Left   move left
+bindsym $mod+Shift+Down   move down
+bindsym $mod+Shift+Up     move up
+bindsym $mod+Shift+Right  move right
+bindsym $mod+Shift+h      move left
+bindsym $mod+Shift+j      move down
+bindsym $mod+Shift+k      move up
+bindsym $mod+Shift+l      move right
+
+# split in horizontal orientation
+bindsym $mod+backslash split h
+
+# split in vertical orientation
+bindsym $mod+minus split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s        layout stacking
+bindsym $mod+t        layout tabbed
+bindsym $mod+Shift+e  layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a 	     focus parent
+bindsym $mod+Shift+a focus child
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3
+bindsym $mod+Shift+r restart
+
+# application
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# start rofi
+bindsym $mod+d        exec --no-startup-id rofi -show window
+bindsym $mod+Shift+d  exec --no-startup-id rofi -show
+
+# start thunar
+bindsym $mod+period exec --no-startup-id thunar
+
+# start web
+set $web firefox-bin
+bindsym $mod+comma exec --no-startup-id $web
+
+# voice
+bindsym XF86AudioLowerVolume exec "amixer set Master unmute; amixer -q -D pulse sset Master 5%-"
+bindsym XF86AudioRaiseVolume exec "amixer set Master unmute; amixer -q -D pulse sset Master 5%+"
+bindsym XF86AudioMute exec amixer set Master mute
+
+# light
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+# __        __         _                             
+# \ \      / /__  _ __| | _____ _ __   __ _  ___ ___ 
+#  \ \ /\ / / _ \| '__| |/ / __| '_ \ / _` |/ __/ _ \
+#   \ V  V / (_) | |  |   <\__ \ |_) | (_| | (_|  __/
+#    \_/\_/ \___/|_|  |_|\_\___/ .__/ \__,_|\___\___|
+#                              |_|                   
+
+# define workspaces
+set $ws1 "1: "
+set $ws2 "2: " 
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws0 "  "
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0
+
+# specify windows to use floating mode
+for_window [class="Lightdm-gtk-greeter-settings"]   floating enable
+for_window [class="Lxappearance"]                   floating enable
+for_window [class="Menu"]                           floating enable
+for_window [class="feh"]                            floating enable
+for_window [class="File-roller"]                    floating enable
+for_window [class="Anki"]                           floating enable
+for_window [class="mpv"]                            floating enable
+for_window [class="jetbrains-toolbox"]              floating enable
+for_window [class="Mainwin"]                        floating enable
+for_window [class="fontforge"]                      floating enable
+for_window [class="flameshot"]                      floating enable
+for_window [class="blueman-manager"]                floating enable
+
+# assign program to workspace
+assign [class="Google-chrome"] 		    → $ws2
+assign [class="Firefox"]       		    → $ws2
+assign [class="Thunar"]			          → $ws3
+assign [class="Code"] 			          → $ws4
+assign [class="Xfce4-[^tT][a-zA-Z]*"]	→ $ws5
+assign [class="jetbrains-idea"]       → $ws6
+assign [class="jetbrains-pycharm"]    → $ws7
+assign [class="jetbrains-clion"]      → $ws8 
+assign [class="jetbrains-studio"]     → $ws9
+assign [class="jetbrains-webstorm"]   → $ws9
+# switch workspace
+bindsym $mod+bracketleft  workspace prev
+bindsym $mod+bracketright workspace next
+
+# multi monitor
+bindsym $mod+Tab move workspace to output right
+
+
+#  ____  _         _      
+# / ___|| |_ _   _| | ___ 
+# \___ \| __| | | | |/ _ \
+#  ___) | |_| |_| | |  __/
+# |____/ \__|\__, |_|\___|
+#            |___/        
+
+# title
+title_align center
+
+# class                 border      background  text       indicator  child_border
+client.focused          #271f17aF   #271f17f5   #fffffF   #AAAAAA55   #FF6F5495
+client.focused_inactive #21211d55   #22222255   #888888   #484e5055   #ffffff15
+client.unfocused        #33333355   #1d212155   #fffff1   #292d2e55   #22222255
+client.urgent           #4a4b4c55   #4a4b4c55   #fffffF   #AAAAAA55   #4a4c4b55
+client.placeholder      #00000055   #0c0c0c55   #fffffF   #00000055   #0c0c0c55
+client.background       #11111155
+
+# border
+default_border          pixel 2
+default_floating_border pixel 3
+hide_edge_borders smart
+
+
+#   ____                 
+#  / ___| __ _ _ __  ___ 
+# | |  _ / _` | '_ \/ __|
+# | |_| | (_| | |_) \__ \
+#  \____|\__,_| .__/|___/
+#             |_|        
+# In order to use gaps you need to disable window titlebars.
+for_window [class=".*"] border pixel 1
+
+smart_gaps on
+gaps inner 4
+gaps outer 2
+
+#  _ _____ _                
+# (_)___ /| |__   __ _ _ __ 
+# | | |_ \| '_ \ / _` | '__|
+# | |___) | |_) | (_| | |   
+# |_|____/|_.__/ \__,_|_|   
+
+# show or not
+bindsym $mod+b bar mode toggle 
+
+# bar settings
+bar {
+  font pango: Hack Nerd Font 15
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf 
+  # transparent
+	i3bar_command i3bar -t
+  position top
+  workspace_buttons yes
+  strip_workspace_numbers no
+
+  colors {
+    background #00000055
+    statusline #d0e1d4
+    separator  #c1d0c1
+    # class			          border  	background  text
+    focused_workspace   	#FF6F54 	#FF6F54 	  #FFF2CE
+    inactive_workspace  	#64635f 	#64635f 	  #a7afa9
+    urgent_workspace    	#2e394a 	#2e394a 	  #e7dfd9
+  }
+}
+
+
+#   ____          _                  
+#  / ___|   _ ___| |_ ___  _ __ ___  
+# | |  | | | / __| __/ _ \| '_ ` _ \ 
+# | |__| |_| \__ \ || (_) | | | | | |
+#  \____\__,_|___/\__\___/|_| |_| |_|
+
+# logout session
+set $Locker i3lock -i ~/.config/i3/i3lock/lock.png
+set $mode_system  Lock (h) |  Logout (j) |  Reboot(k) |  Shutdown(l)
+mode "$mode_system" {
+  bindsym h exec --no-startup-id $Locker,       mode "default"
+  bindsym j exec --no-startup-id i3-msg exit,   mode "default"
+  bindsym k exec --no-startup-id loginctl reboot,   mode "default"
+  bindsym l exec --no-startup-id loginctl poweroff, mode "default"
+
+  # back to normal: Escape
+  bindsym Escape mode "default"
+}
+bindsym $mod+Delete mode "$mode_system"
+
+# resize windows
+set $Resize " Resize"
+mode $Resize {
+  bindsym Left  resize shrink width   10 px or 10 ppt
+  bindsym Down  resize grow   height  10 px or 10 ppt
+  bindsym Up    resize shrink height  10 px or 10 ppt
+  bindsym Right resize grow   width   10 px or 10 ppt
+
+  # back to normal
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode $Resize
+
+#  ____                               _           _   
+# / ___|  ___ _ __ ___  ___ _ __  ___| |__   ___ | |_ 
+# \___ \ / __| '__/ _ \/ _ \ '_ \/ __| '_ \ / _ \| __|
+#  ___) | (__| | |  __/  __/ | | \__ \ | | | (_) | |_ 
+# |____/ \___|_|  \___|\___|_| |_|___/_| |_|\___/ \__|
+
+set $screenshot  flameshot |  Screen (j) |  Gui (k) |  Delay (l)
+mode "$screenshot" {
+  bindsym j exec flameshot full -c -p ~/Pictures/flameshot/,        mode "default"
+  bindsym k exec flameshot gui -p ~/Pictures/flameshot/,            mode "default"
+  bindsym l exec flameshot full -c -p ~/Pictures/flameshot -d 1000, mode "default"
+
+  # back to normal: Escape
+  bindsym Escape mode "default"
+}
+bindsym $mod+x mode "$screenshot"
+bindsym $mod+Shift+x exec flameshot gui -p ~/Pictures/flameshot/
+
+#     ___  _   _                   
+#    / _ \| |_| |__   ___ _ __ ___ 
+#   | | | | __| '_ \ / _ \ '__/ __|
+#   | |_| | |_| | | |  __/ |  \__ \
+#    \___/ \__|_| |_|\___|_|  |___/                                   
+
+bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks

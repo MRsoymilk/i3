@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# backlight
+xbacklight -set 20
+
+# background
+xcompmgr&
+
+# background
+feh --bg-fill /home/milk/.config/feh/mybackground.png --bg-scale /home/milk/.config/feh/mybackground.png
+
+# input method
+fcitx&
+
+# v2ray
+/opt/v2ray/v2ray&
